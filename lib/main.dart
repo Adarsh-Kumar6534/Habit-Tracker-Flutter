@@ -73,7 +73,7 @@ class _HabitTrackerScreenState extends State<HabitTrackerScreen>
       context: context,
       builder: (context) {
         return StatefulBuilder(
-          builder: (context, setState) {
+          builder: (dialogContext, setState) {
             return AlertDialog(
               backgroundColor: Colors.white.withOpacity(0.1),
               shape: RoundedRectangleBorder(
@@ -103,7 +103,8 @@ class _HabitTrackerScreenState extends State<HabitTrackerScreen>
                         labelText: "Description",
                         labelStyle: TextStyle(color: Colors.white70),
                         filled: true,
-                        fillColor: Colors.white.withOpacity(0.1),
+                        fillColor: Colors.white.withOpacity(
+                            0.1), // Fixed from Icons.white to Colors.white
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8)),
                       ),
@@ -160,13 +161,14 @@ class _HabitTrackerScreenState extends State<HabitTrackerScreen>
                 TextButton(
                   onPressed: () {
                     if (habitName.isNotEmpty) {
+                      final newHabit = Habit(
+                          name: habitName,
+                          description: description,
+                          streak: streak,
+                          progress: 0.0,
+                          icon: selectedIcon ?? Icons.add);
                       setState(() {
-                        habits.add(Habit(
-                            name: habitName,
-                            description: description,
-                            streak: streak,
-                            progress: 0.0,
-                            icon: selectedIcon ?? Icons.add));
+                        habits.add(newHabit);
                         totalHabits++;
                       });
                       Navigator.pop(context);
@@ -245,7 +247,7 @@ class _HabitTrackerScreenState extends State<HabitTrackerScreen>
                   duration: Duration(milliseconds: 400),
                   opacity: 1,
                   child: Text(
-                    "Tuesday, July 01, 2025, 10:15 AM IST",
+                    "Tuesday, July 01, 2025, 10:46 AM IST",
                     style: TextStyle(
                         fontSize: 14, color: Colors.white.withOpacity(0.6)),
                     textAlign: TextAlign.center,
