@@ -1,16 +1,77 @@
-# miniproject1
+<h1 align="center">
+  🚀 Flutter Habit Tracker App
+</h1>
 
-A new Flutter project.
+<p align="center">
+  <img src="https://img.shields.io/badge/Flutter-3.22-blue?logo=flutter&logoColor=white" />
+  <img src="https://img.shields.io/badge/Stateful%20Widgets-Used-success?style=flat-square" />
+  <img src="https://img.shields.io/badge/Made%20by-Adarsh--Kumar6534-blueviolet?style=flat-square" />
+</p>
 
-## Getting Started
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&center=true&vCenter=true&width=500&lines=Track+Habits+Like+a+Pro!;Build+Momentum+Daily.;Celebrate+Your+Streaks+with+Confetti!+🎉" alt="Typing SVG" />
+</p>
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## 🧠 About the App
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+> "Build better habits, one day at a time."
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This beautifully animated **Flutter Habit Tracker** helps you:
+
+- ✅ Create daily routines
+- 🔁 Track progress with animated progress bars
+- 💥 Celebrate streaks with confetti
+- 🌈 Stay motivated with a particle-powered UI and custom colors
+
+---
+
+## ✨ UI Preview
+
+<p align="center">
+  <img src="assets/screenshots/habit_tracker_ui.gif" width="70%" alt="Habit Tracker Preview" />
+</p>
+
+---
+
+## 🎯 Key Features
+
+| Feature                     | Description                                              |
+|-----------------------------|----------------------------------------------------------|
+| 🌀 Animated Background      | Custom `ParticlePainter` with gradient bubbles           |
+| 🔧 Add Habits Dynamically   | Input modal with streaks, icon picker, and description   |
+| 📊 Stats at a Glance        | Today’s streak, best streak, and total habit count       |
+| 🎉 Confetti Celebration     | Triggered when habit progress reaches 100%               |
+| ⚡ Interactive Cards         | Hover and click for habit-specific interactions          |
+| 🌙 Beautiful Gradients      | Uses Tailwind-inspired gradient themes                   |
+
+---
+
+## 🧩 Tech Stack
+
+| Tech                     | Use Case                            |
+|--------------------------|-------------------------------------|
+| `Flutter`                | Frontend framework                  |
+| `Lottie`                 | Confetti animations                 |
+| `CustomPainter`          | Particle background rendering       |
+| `StatefulWidget`         | State management and updates        |
+| `Icons & Gradients`      | Visual design                       |
+
+---
+
+## 🖼️ Screenshots
+
+| Home Screen | Confetti Celebration | Add New Habit |
+|-------------|----------------------|----------------|
+| <img src="assets/screenshots/home.png" width="250"/> | <img src="assets/screenshots/confetti.png" width="250"/> | <img src="assets/screenshots/add.png" width="250"/> |
+
+---
+
+## 🛠 How to Run
+
+```bash
+git clone https://github.com/Adarsh-Kumar6534/Habit-Tracker-Flutter.git
+cd Habit-Tracker-Flutter
+flutter pub get
+flutter run
