@@ -8,10 +8,13 @@
   <img src="https://img.shields.io/badge/Made%20by-Adarsh--Kumar6534-blueviolet?style=flat-square" />
 </p>
 
-<p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&center=true&vCenter=true&width=500&lines=Track+Habits+Like+a+Pro!;Build+Momentum+Daily.;Celebrate+Your+Streaks+with+Confetti!+🎉" alt="Typing SVG" />
-</p>
+<h3 align="center">
+  🚀 Track Habits Like a Pro • 🎯 Build Momentum Daily • 🎉 Celebrate Your Wins!
+</h3>
 
+<p align="center">
+  <img src="assets/screenshots/habit-tracker.gif" width="80%" alt="Habit Tracker UI Demo" />
+</p>
 ---
 
 ## 🧠 About the App
