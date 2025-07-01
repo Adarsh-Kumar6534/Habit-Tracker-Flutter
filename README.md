@@ -30,7 +30,7 @@ This beautifully animated **Flutter Habit Tracker** helps you:
 ## ✨ UI Preview
 
 <p align="center">
-  <img src="assets/screenshots/habit_tracker_ui.gif" width="70%" alt="Habit Tracker Preview" />
+  <img src="assets/screenshots/habbit_tracker_ui.gif" width="70%" alt="Habit Tracker Preview" />
 </p>
 
 ---
