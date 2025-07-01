@@ -13,9 +13,9 @@
 </h3>
 
 <p align="center">
-  <img src="assets/screenshots/habit-tracker.gif" width="80%" alt="Habit Tracker UI Demo" />
+  <img src="assets/screenshots/habit-tracker.gif" width="40%" alt="Habit Tracker UI Demo" />
 </p>
----
+
 
 ## 🧠 About the App
 
