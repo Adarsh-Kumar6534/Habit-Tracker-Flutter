@@ -64,152 +64,125 @@ class _HabitTrackerScreenState extends State<HabitTrackerScreen>
   }
 
   void _addNewHabit() {
+    String habitName = "";
+    String description = "";
+    int streak = 0;
+    IconData? selectedIcon = Icons.add;
+
     showDialog(
       context: context,
       builder: (context) {
-        String habitName = "";
-        String description = "";
-        int streak = 0;
-        IconData? selectedIcon = Icons.add;
-        return AlertDialog(
-          backgroundColor: Colors.white.withOpacity(0.1),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          title: Text("Add New Habit", style: TextStyle(color: Colors.white)),
-          content: Container(
-            width: 300,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: "Habit Name",
-                    labelStyle: TextStyle(color: Colors.white70),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.1),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  style: TextStyle(color: Colors.white),
-                  onChanged: (value) => habitName = value,
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: "Description",
-                    labelStyle: TextStyle(color: Colors.white70),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.1),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  style: TextStyle(color: Colors.white),
-                  onChanged: (value) => description = value,
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: "Initial Streak",
-                    labelStyle: TextStyle(color: Colors.white70),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.1),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  keyboardType: TextInputType.number,
-                  style: TextStyle(color: Colors.white),
-                  onChanged: (value) => streak = int.tryParse(value) ?? 0,
-                ),
-                SizedBox(height: 10),
-                Text("Select Icon", style: TextStyle(color: Colors.white70)),
-                GridView.count(
-                  crossAxisCount: 4,
-                  shrinkWrap: true,
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              backgroundColor: Colors.white.withOpacity(0.1),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
+              title:
+                  Text("Add New Habit", style: TextStyle(color: Colors.white)),
+              content: Container(
+                width: 300,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    _buildIconButton(Icons.book, selectedIcon,
-                        (icon) => setState(() => selectedIcon = icon)),
-                    _buildIconButton(Icons.fitness_center, selectedIcon,
-                        (icon) => setState(() => selectedIcon = icon)),
-                    _buildIconButton(Icons.local_drink, selectedIcon,
-                        (icon) => setState(() => selectedIcon = icon)),
-                    _buildIconButton(Icons.star, selectedIcon,
-                        (icon) => setState(() => selectedIcon = icon)),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: "Habit Name",
+                        labelStyle: TextStyle(color: Colors.white70),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.1),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                      ),
+                      style: TextStyle(color: Colors.white),
+                      onChanged: (value) => habitName = value,
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: "Description",
+                        labelStyle: TextStyle(color: Colors.white70),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.1),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                      ),
+                      style: TextStyle(color: Colors.white),
+                      onChanged: (value) => description = value,
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: "Initial Streak",
+                        labelStyle: TextStyle(color: Colors.white70),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.1),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                      ),
+                      keyboardType: TextInputType.number,
+                      style: TextStyle(color: Colors.white),
+                      onChanged: (value) => streak = int.tryParse(value) ?? 0,
+                    ),
+                    SizedBox(height: 10),
+                    Text("Select Icon",
+                        style: TextStyle(color: Colors.white70)),
+                    GridView.count(
+                      crossAxisCount: 4,
+                      shrinkWrap: true,
+                      children: [
+                        _IconButton(
+                            icon: Icons.book,
+                            selectedIcon: selectedIcon,
+                            onTap: () =>
+                                setState(() => selectedIcon = Icons.book)),
+                        _IconButton(
+                            icon: Icons.fitness_center,
+                            selectedIcon: selectedIcon,
+                            onTap: () => setState(
+                                () => selectedIcon = Icons.fitness_center)),
+                        _IconButton(
+                            icon: Icons.local_drink,
+                            selectedIcon: selectedIcon,
+                            onTap: () => setState(
+                                () => selectedIcon = Icons.local_drink)),
+                        _IconButton(
+                            icon: Icons.star,
+                            selectedIcon: selectedIcon,
+                            onTap: () =>
+                                setState(() => selectedIcon = Icons.star)),
+                      ],
+                    ),
                   ],
                 ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    if (habitName.isNotEmpty) {
+                      setState(() {
+                        habits.add(Habit(
+                            name: habitName,
+                            description: description,
+                            streak: streak,
+                            progress: 0.0,
+                            icon: selectedIcon ?? Icons.add));
+                        totalHabits++;
+                      });
+                      Navigator.pop(context);
+                    }
+                  },
+                  child: Text("Add", style: TextStyle(color: Colors.white)),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text("Cancel", style: TextStyle(color: Colors.white)),
+                ),
               ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                if (habitName.isNotEmpty) {
-                  setState(() {
-                    habits.add(Habit(
-                        name: habitName,
-                        description: description,
-                        streak: streak,
-                        progress: 0.0,
-                        icon: selectedIcon ?? Icons.add));
-                    totalHabits++;
-                  });
-                  Navigator.pop(context);
-                }
-              },
-              child: Text("Add", style: TextStyle(color: Colors.white)),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text("Cancel", style: TextStyle(color: Colors.white)),
-            ),
-          ],
+            );
+          },
         );
       },
-    );
-  }
-
-  Widget _buildIconButton(
-      IconData icon, IconData? selectedIcon, Function(IconData) onTap) {
-    bool isSelected = selectedIcon == icon;
-    bool isHovered = false;
-
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      onEnter: (_) => setState(() => isHovered = true),
-      onExit: (_) => setState(() => isHovered = false),
-      child: GestureDetector(
-        onTap: () => onTap(icon),
-        child: AnimatedContainer(
-          duration: Duration(milliseconds: 200),
-          padding: EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: isSelected || isHovered
-                ? Colors.white.withOpacity(0.2)
-                : Colors.white.withOpacity(0.05),
-            border: Border.all(
-              color: isSelected
-                  ? Color(0xFF00FF7F)
-                      .withOpacity(0.8) // Neon green for selected
-                  : isHovered
-                      ? Color(0xFF00FF7F)
-                          .withOpacity(0.5) // Lighter green for hover
-                      : Colors.white.withOpacity(0.2),
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(8),
-            boxShadow: isSelected || isHovered
-                ? [
-                    BoxShadow(
-                      color:
-                          Color(0xFF00FF7F).withOpacity(isSelected ? 0.4 : 0.2),
-                      blurRadius: isSelected ? 10 : 5,
-                      spreadRadius: isSelected ? 1 : 0,
-                    ),
-                  ]
-                : [],
-          ),
-          child: Icon(icon, color: Colors.white70, size: 20),
-        ),
-      ),
     );
   }
 
@@ -272,7 +245,7 @@ class _HabitTrackerScreenState extends State<HabitTrackerScreen>
                   duration: Duration(milliseconds: 400),
                   opacity: 1,
                   child: Text(
-                    "Tuesday, July 01, 2025, 08:58 AM IST",
+                    "Tuesday, July 01, 2025, 10:15 AM IST",
                     style: TextStyle(
                         fontSize: 14, color: Colors.white.withOpacity(0.6)),
                     textAlign: TextAlign.center,
@@ -424,7 +397,11 @@ class _HabitTrackerScreenState extends State<HabitTrackerScreen>
       child: GestureDetector(
         onTap: () {
           setState(() {
-            if (habit.progress < 1.0) habit.progress += 0.1;
+            if (habit.progress < 1.0) {
+              double newProgress = habit.progress + 0.1;
+              habit.progress =
+                  newProgress.clamp(0.0, 1.0); // Cap at 100% immediately
+            }
             habits[index] = habit;
           });
         },
@@ -497,7 +474,7 @@ class _HabitTrackerScreenState extends State<HabitTrackerScreen>
                       borderRadius: BorderRadius.circular(24),
                       color: habit.progress >= 1.0
                           ? Color(0xFF22C55E)
-                          : Colors.transparent,
+                          : Colors.transparent, // Green when 100%
                       boxShadow: habit.progress >= 1.0
                           ? [
                               BoxShadow(
@@ -509,7 +486,7 @@ class _HabitTrackerScreenState extends State<HabitTrackerScreen>
                     child: habit.progress >= 1.0
                         ? Lottie.asset('assets/confetti.json',
                             width: 48, height: 48, fit: BoxFit.cover)
-                        : null,
+                        : null, // Confetti at 100%
                   ),
                   SizedBox(height: 16),
                   Row(
@@ -541,7 +518,10 @@ class _HabitTrackerScreenState extends State<HabitTrackerScreen>
                         children: [
                           AnimatedContainer(
                             duration: Duration(milliseconds: 1000),
-                            width: 120 * habit.progress,
+                            width: 120 *
+                                (habit.progress > 1.0
+                                    ? 1.0
+                                    : habit.progress), // Cap width at 100%
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [Color(0xFF8B5CF6), Color(0xFFEC4899)],
@@ -637,4 +617,64 @@ class Habit {
       required this.streak,
       required this.progress,
       required this.icon});
+}
+
+class _IconButton extends StatefulWidget {
+  final IconData icon;
+  final IconData? selectedIcon;
+  final Function() onTap;
+
+  const _IconButton(
+      {required this.icon, required this.selectedIcon, required this.onTap});
+
+  @override
+  __IconButtonState createState() => __IconButtonState();
+}
+
+class __IconButtonState extends State<_IconButton> {
+  bool isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    bool isSelected = widget.selectedIcon == widget.icon;
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => isHovered = true),
+      onExit: (_) => setState(() => isHovered = false),
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedContainer(
+          duration: Duration(milliseconds: 200),
+          padding: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: isSelected || isHovered
+                ? Colors.white.withOpacity(0.2)
+                : Colors.white.withOpacity(0.05),
+            border: Border.all(
+              color: isSelected
+                  ? Color(0xFF00FF7F)
+                      .withOpacity(0.8) // Neon green for selected
+                  : isHovered
+                      ? Color(0xFF00FF7F)
+                          .withOpacity(0.5) // Lighter green for hover
+                      : Colors.white.withOpacity(0.2),
+              width: 2,
+            ),
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: isSelected || isHovered
+                ? [
+                    BoxShadow(
+                      color:
+                          Color(0xFF00FF7F).withOpacity(isSelected ? 0.4 : 0.2),
+                      blurRadius: isSelected ? 10 : 5,
+                      spreadRadius: isSelected ? 1 : 0,
+                    ),
+                  ]
+                : [],
+          ),
+          child: Icon(widget.icon, color: Colors.white70, size: 20),
+        ),
+      ),
+    );
+  }
 }
